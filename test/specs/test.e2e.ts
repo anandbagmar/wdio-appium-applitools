@@ -6,8 +6,9 @@ describe('My Login application', () => {
     it('should open the app and perform a simple test', async () => {
         console.log('Opening Eyes for visual testing...');
         eyes = new Eyes();
-        eyes.setApiKey('APPLITOOLS-API-KEY');
-        eyes.setServerUrl("https://eyes.applitools.com");
+        var applitoolsApiKey = process.env.APPLITOOLS_API_KEY || "NOT_SET"
+        eyes.setApiKey(applitoolsApiKey);
+        // eyes.setServerUrl("https://eyes.applitools.com");
         await eyes.open(driver, 'Android Native App', "should open the app and perform a simple test");
 
         await driver.$("-android uiautomator:new UiSelector().text(\"Login\")").click();
