@@ -1,5 +1,4 @@
 import '@applitools/eyes-webdriverio/service';
-// import { EyesService } from '@applitools/eyes-webdriverio/service';
 
 export const config: WebdriverIO.Config = {
 
@@ -73,17 +72,7 @@ export const config: WebdriverIO.Config = {
         'appium:autoGrantPermissions': true
     }],
 
-    services: [
-        'appium'
-        // ,
-        // [
-        //     EyesService,
-        //     {
-        //         useVisualGrid: false,
-        //         apiKey: process.env.APPLITOOLS_API_KEY || 'your-applitools-api-key',
-        //     },
-        // ],
-    ],
+    services: ['appium'],
 
     //
     // ===================
@@ -132,7 +121,6 @@ export const config: WebdriverIO.Config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['appium'],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -305,22 +293,22 @@ export const config: WebdriverIO.Config = {
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {string} oldSessionId session ID of the old session
+     * @param {string} newSessionId session ID of the new session
+     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
     /**
-    * Hook that gets executed before a WebdriverIO assertion happens.
-    * @param {object} params information about the assertion to be executed
-    */
+     * Hook that gets executed before a WebdriverIO assertion happens.
+     * @param {object} params information about the assertion to be executed
+     */
     // beforeAssertion: function(params) {
     // }
     /**
-    * Hook that gets executed after a WebdriverIO assertion happened.
-    * @param {object} params information about the assertion that was executed, including its results
-    */
+     * Hook that gets executed after a WebdriverIO assertion happened.
+     * @param {object} params information about the assertion that was executed, including its results
+     */
     // afterAssertion: function(params) {
     // }
 
