@@ -1,4 +1,4 @@
-import '@applitools/eyes-webdriverio/service';
+import '@applitools/eyes-webdriverio';
 
 export const config: WebdriverIO.Config = {
 

@@ -8,11 +8,7 @@
 ```
 3. Start the Android emulator or connect a real device to your laptop. 
 4. Update the capabilities based on the device you have [here](wdio.conf.ts)
-5. Start appium server manually
-```bash
-    ./node_modules/.bin/appium
-```
-6. Run the test: 
+5. Run the test: 
 ```bash 
     npx wdio run wdio.conf.ts
 ```

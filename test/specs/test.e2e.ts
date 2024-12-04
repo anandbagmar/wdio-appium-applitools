@@ -1,4 +1,4 @@
-import {driver} from '@wdio/globals'
+import {browser} from '@wdio/globals'
 import {Eyes, Target} from "@applitools/eyes-webdriverio";
 
 describe('My Login application', () => {
@@ -15,18 +15,19 @@ describe('My Login application', () => {
         await eyes.setTestName("Android Native WDIO Test");
         await eyes.setHostOS(osName);
         await eyes.setBranchName("main");
+        await eyes.setIsDisabled(false);
 
-        await eyes.open(driver, 'Android Native App', 'should open the app and perform a simple test');
-
-        await driver.$("-android uiautomator:new UiSelector().text(\"Login\")").click();
-        // await driver.$("-android uiautomator:new UiSelector().className(\"android.view.ViewGroup\").instance(16)").click();
-
+        await eyes.open(browser, 'Android Native App', 'should open the app and perform a simple test');
         console.log('Eyes config: ' + eyes.getConfiguration());
         console.log('Server url: ' + eyes.getServerUrl());
         console.log('API key: ' + eyes.getApiKey());
 
-        // Perform a visual validation
-        await eyes.check('login', Target.window().fully().withName("Login page"));
+        let loginTab = await browser.$("-android uiautomator:new UiSelector().text(\"Login\")");
+        await eyes.check('login', Target.region(loginTab));
+        await loginTab.click();
+
+        // await browser.$("-android uiautomator:new UiSelector().className(\"android.view.ViewGroup\").instance(16)").click();
+        // await eyes.check('loginErrors', Target.window());
 
         console.log('Closing Eyes...');
         let testResults = await eyes.close(false);
