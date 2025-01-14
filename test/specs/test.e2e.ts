@@ -1,4 +1,4 @@
-import {browser} from '@wdio/globals'
+import {driver, browser} from '@wdio/globals'
 import {Eyes, Target} from "@applitools/eyes-webdriverio";
 
 describe('My Login application', () => {
@@ -17,6 +17,8 @@ describe('My Login application', () => {
         await eyes.setBranchName("main");
         await eyes.setIsDisabled(false);
 
+        await console.log("Browser: " + browser);
+        await console.log("Browser: " + JSON.stringify(browser));
         await eyes.open(browser, 'Android Native App', 'should open the app and perform a simple test');
         console.log('Eyes config: ' + eyes.getConfiguration());
         console.log('Server url: ' + eyes.getServerUrl());
