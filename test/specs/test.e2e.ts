@@ -16,6 +16,7 @@ describe('My Login application', () => {
         await eyes.setHostOS(osName);
         await eyes.setBranchName("main");
         await eyes.setIsDisabled(false);
+        await eyes.setForceFullPageScreenshot(true);
 
         await console.log("Browser: " + browser);
         await console.log("Browser: " + JSON.stringify(browser));
@@ -25,11 +26,30 @@ describe('My Login application', () => {
         console.log('API key: ' + eyes.getApiKey());
 
         let loginTab = await browser.$("-android uiautomator:new UiSelector().text(\"Login\")");
-        await eyes.check('login', Target.region(loginTab));
+        await eyes.check('launch', Target.window());
         await loginTab.click();
+        await eyes.check('login', Target.window());
+        await eyes.check('login button', Target.region(loginTab));
 
-        // await browser.$("-android uiautomator:new UiSelector().className(\"android.view.ViewGroup\").instance(16)").click();
-        // await eyes.check('loginErrors', Target.window());
+        const loginButton = await driver.$("-android uiautomator:new UiSelector().text(\"LOGIN\")");
+        await loginButton.click();
+        await eyes.check('login with no creds', Target.window());
+
+        const webviewTab = await driver.$("-android uiautomator:new UiSelector().text(\"Webview\")");
+        await webviewTab.click();
+
+        const getStartedButton = await driver.$("-android uiautomator:new UiSelector().text(\"Get Started\")");
+        await eyes.check('webview', Target.window());
+        await getStartedButton.click();
+
+        await eyes.check('Getting Started', Target.window());
+
+        const swipeTab = await driver.$("-android uiautomator:new UiSelector().text(\"Swipe\")");
+        await swipeTab.click();
+
+        browser.pause(2000);
+
+        await eyes.check('swipe', Target.window());
 
         console.log('Closing Eyes...');
         let testResults = await eyes.close(false);

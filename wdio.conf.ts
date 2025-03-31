@@ -65,10 +65,10 @@ export const config: WebdriverIO.Config = {
     // }],
     capabilities: [{
         platformName: 'Android',
-        'appium:deviceName': 'Pixel_4_API_30',
-        'appium:platformVersion': '14.0',
+        'appium:deviceName': 'Pixel 8 Pro API 35',
+        'appium:platformVersion': '15.0',
         'appium:automationName': 'UiAutomator2',
-        'appium:app': './apps/android.wdio.native.app.v1.0.8.apk',
+        'appium:app': './dist/android.wdio.native.app.v1.0.8.apk',
         'appium:autoGrantPermissions': true
     }],
 
@@ -108,7 +108,7 @@ export const config: WebdriverIO.Config = {
     // baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 90000
     },
 
     //
