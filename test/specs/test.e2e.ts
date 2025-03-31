@@ -1,6 +1,5 @@
 import {driver, browser} from '@wdio/globals'
-import {Eyes, Target} from "@applitools/eyes-webdriverio";
-
+import {Eyes, Target, FileLogHandler} from "@applitools/eyes-webdriverio";
 describe('My Login application', () => {
     let eyes: Eyes;  // Declare Eyes instance
     it('should open the app and perform a simple test', async () => {
@@ -17,6 +16,7 @@ describe('My Login application', () => {
         await eyes.setBranchName("main");
         await eyes.setIsDisabled(false);
         await eyes.setForceFullPageScreenshot(true);
+        await eyes.setLogHandler(new FileLogHandler(true, 'applitools.log', true));
 
         await console.log("Browser: " + browser);
         await console.log("Browser: " + JSON.stringify(browser));
@@ -39,17 +39,19 @@ describe('My Login application', () => {
         await webviewTab.click();
 
         const getStartedButton = await driver.$("-android uiautomator:new UiSelector().text(\"Get Started\")");
-        await eyes.check('webview', Target.window());
+        await eyes.check('webview', Target.window().fully());
         await getStartedButton.click();
 
-        await eyes.check('Getting Started', Target.window());
+        await eyes.check('Getting Started', Target.window().fully());
+        await eyes.check('Getting Started', Target.window().fully().useSystemScreenshot());
 
         const swipeTab = await driver.$("-android uiautomator:new UiSelector().text(\"Swipe\")");
         await swipeTab.click();
 
         browser.pause(2000);
 
-        await eyes.check('swipe', Target.window());
+        await eyes.check('swipe', Target.window().fully());
+        await eyes.check('swipe', Target.window().fully().useSystemScreenshot());
 
         console.log('Closing Eyes...');
         let testResults = await eyes.close(false);

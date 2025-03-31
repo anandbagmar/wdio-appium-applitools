@@ -12,3 +12,7 @@
 ```bash 
     npx wdio run wdio.conf.ts
 ```
+
+### NOTE: 
+* The code is currently configured to run with the NML instrumented apk (see the capabilities in `wdio.conf.ts`) - `./dist/android.wdio.native.app.v1.0.8.apk`
+* To run it without NML, update change the path of the apk to `./apps/android.wdio.native.app.v1.0.8.apk`

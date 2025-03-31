@@ -69,7 +69,12 @@ export const config: WebdriverIO.Config = {
         'appium:platformVersion': '15.0',
         'appium:automationName': 'UiAutomator2',
         'appium:app': './dist/android.wdio.native.app.v1.0.8.apk',
-        'appium:autoGrantPermissions': true
+        'appium:autoGrantPermissions': true,
+        'appium:optionalIntentArguments': `--es APPLITOOLS '${JSON.stringify(
+            {
+                NML_API_KEY: process.env.APPLITOOLS_API_KEY,
+            }
+        )}'`
     }],
 
     services: ['appium'],
@@ -195,8 +200,10 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {string} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
+    beforeSession: function (config, capabilities, specs, cid) {
+        console.log("beforeSession: Capabilities: ", capabilities)
+       // Eyes.setMobileCapabilities (capabilities, process.env.APPLITOOLS_API_KEY);
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
