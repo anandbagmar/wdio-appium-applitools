@@ -1,5 +1,5 @@
 import '@applitools/eyes-webdriverio';
-
+const { Eyes } = require('@applitools/eyes-webdriverio');
 export const config: WebdriverIO.Config = {
 
     //
@@ -63,21 +63,40 @@ export const config: WebdriverIO.Config = {
     //     'appium:platformVersion': '12.0',
     //     'appium:automationName': 'UiAutomator2'
     // }],
-    capabilities: [{
-        platformName: 'Android',
-        'appium:deviceName': 'Pixel 8 Pro API 35',
-        'appium:platformVersion': '15.0',
+    // capabilities: [{
+    //     platformName: 'Android',
+    //     'appium:deviceName': 'Pixel 8 Pro API 35',
+    //     'appium:platformVersion': '15.0',
+    //     'appium:automationName': 'UiAutomator2',
+    //     'appium:app': './dist/android.wdio.native.app.v1.0.8.apk',
+    //     'appium:autoGrantPermissions': true,
+    //     'appium:optionalIntentArguments': `--es APPLITOOLS '${JSON.stringify(
+    //         {
+    //             NML_API_KEY: process.env.APPLITOOLS_API_KEY,
+    //         }
+    //     )}'`
+    // }],
+    capabilities: [Eyes.setMobileCapabilities({
+        platformName: "android",
+        'appium:deviceName': 'Pixel 8 Pro API 34',
+        'appium:platformVersion': '14.0',
         'appium:automationName': 'UiAutomator2',
         'appium:app': './dist/android.wdio.native.app.v1.0.8.apk',
         'appium:autoGrantPermissions': true,
-        'appium:optionalIntentArguments': `--es APPLITOOLS '${JSON.stringify(
-            {
-                NML_API_KEY: process.env.APPLITOOLS_API_KEY,
-            }
-        )}'`
-    }],
+        "appium:newCommandTimeout": 300,
+        // "appium:orientation": "PORTRAIT",
+        'appium:fullReset': true,  // Uninstall app before each test run
+        "appium:noReset": false
+    },process.env.APPLITOOLS_API_KEY)],
 
-    services: ['appium'],
+    // services: ['appium'],
+    services: [
+        ['appium', {
+            args: {
+                'relaxed-security': true
+            }
+        }]
+    ],
 
     //
     // ===================
@@ -113,11 +132,11 @@ export const config: WebdriverIO.Config = {
     // baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 30000,
+    waitforTimeout: 150000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 180000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -154,7 +173,7 @@ export const config: WebdriverIO.Config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 90000
+        timeout: 180000
     },
 
     //

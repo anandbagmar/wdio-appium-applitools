@@ -3,4 +3,5 @@ node_modules/
 wdio-checkWindow.logs
 applitools.log
 apps
-dist
+#dist
+reports
