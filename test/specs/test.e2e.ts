@@ -67,10 +67,10 @@ describe('My Login application', () => {
         await webviewTab.click();
 
         const getStartedButton = await driver.$("-android uiautomator:new UiSelector().text(\"Get Started\")");
-        await eyes.check('webview', Target.window().fully());
+        await eyes.check('webview', Target.window().fully().stitchMode("CSS"));
         await getStartedButton.click();
 
-        await eyes.check('Getting Started', Target.window().fully());
+        await eyes.check('Getting Started', Target.window().fully().stitchMode("CSS"));
         await eyes.check('Getting Started-systemscreenshot', Target.window().useSystemScreenshot());
 
         const swipeTab = await driver.$("-android uiautomator:new UiSelector().text(\"Swipe\")");

@@ -132,11 +132,11 @@ export const config: WebdriverIO.Config = {
     // baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 150000,
+    waitforTimeout: 240000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 180000,
+    connectionRetryTimeout: 240000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -173,7 +173,7 @@ export const config: WebdriverIO.Config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 180000
+        timeout: 240000
     },
 
     //
